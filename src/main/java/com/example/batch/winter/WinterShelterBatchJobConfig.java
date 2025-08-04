@@ -1,6 +1,7 @@
 package com.example.batch.winter;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.job.builder.JobBuilder;
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
+@Slf4j
 @Configuration
 @RequiredArgsConstructor
 public class WinterShelterBatchJobConfig {
@@ -21,6 +23,7 @@ public class WinterShelterBatchJobConfig {
 
     @Bean
     public Job winterShelterJob(JobRepository jobRepository, PlatformTransactionManager txManager) {
+        log.error("Get Winter Shelter Data Scheduler run");
         return new JobBuilder("winterShelterJob", jobRepository)
                 .start(winterShelterStep(jobRepository, txManager))
                 .build();

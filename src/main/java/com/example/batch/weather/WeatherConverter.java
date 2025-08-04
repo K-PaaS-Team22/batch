@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class WeatherConverter {
-    public List<WeatherDto> convert(List<WeatherVo.Item> items,String locName){
+    public List<WeatherDto> convert(List<WeatherVo.Item> items,String locName,int nx, int ny,String bseTime){
         Map<String, List<WeatherVo.Item>> grouped = items.stream()
                 .collect(Collectors.groupingBy(WeatherVo.Item::getFcstTime));
 
@@ -20,8 +20,12 @@ public class WeatherConverter {
             WeatherDto resDto = new WeatherDto();
             resDto.setFcstTime(key);
             resDto.setLocationName(locName);
+            resDto.setNx(nx);
+            resDto.setNy(ny);
+            resDto.setBaseTime(bseTime);
             resDto.setBaseDate(items.getFirst().getBaseDate());
             List<WeatherVo.Item> weathers=grouped.get(key);
+
             for(WeatherVo.Item item :weathers){
                 switch (item.getCategory()) {
                     case "PTY": resDto.setPty(item.getFcstValue()); break;

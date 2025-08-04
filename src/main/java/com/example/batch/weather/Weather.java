@@ -19,7 +19,10 @@ public class Weather {
     private Long id;
 
     private String locationName;
+    private Integer nx;
+    private Integer ny;
     private String baseDate;
+    private String baseTime;
     private String fcstTime;
 
     private String tmp;   // 강수형태
