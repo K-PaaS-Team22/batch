@@ -5,4 +5,4 @@ WORKDIR $HOME_DIR
 # JAR 파일 복사
 COPY build/libs/batch.jar ./batch.jar
 # 앱 실행 명령
-CMD ["java", "-jar", "shelter.jar"]
+CMD ["java", "-jar", "batch.jar"]
